@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "148076980089",
+    "project_id": "familyarchive-01",
+    "storage_bucket": "familyarchive-01.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:148076980089:android:41e5435477987a8eab31a8",
+        "android_client_info": {
+          "package_name": "com.mlb.archive"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4MM79gyZwS5HqDkCS62SlivC1yf9Sm40"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

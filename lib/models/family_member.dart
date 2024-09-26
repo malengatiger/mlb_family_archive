@@ -4,7 +4,7 @@ part 'family_member.g.dart';
 class FamilyMember {
   String? familyId, familyName, dateRegistered, dateUpdated;
   String? email, cellphone;
-  String familyMemberId, dateOfBirth, dateOfDeath;
+  String memberId, dateOfBirth, dateOfDeath;
   MemberType? memberType;
   Gender? gender;
   String firstName, middleNames, lastName;
@@ -17,7 +17,7 @@ class FamilyMember {
       this.dateUpdated,
       this.email,
       this.cellphone,
-      this.familyMemberId,
+      this.memberId,
       this.dateOfBirth,
       this.dateOfDeath,
       this.memberType,

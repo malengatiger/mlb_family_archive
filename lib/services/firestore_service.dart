@@ -1,16 +1,79 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:mlb_family_archive/models/family.dart';
+import 'package:mlb_family_archive/models/family_location.dart';
+import 'package:mlb_family_archive/models/family_member.dart';
+import 'package:mlb_family_archive/models/post.dart';
+import 'package:mlb_family_archive/services/storage_service.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:universal_io/io.dart';
+import 'package:image/image.dart' as img;
 
+import '../models/member_image.dart';
+import '../models/member_location.dart';
+import '../models/user.dart';
 import '../utils/functions.dart';
 
 class FirestoreService {
   final FirebaseFirestore store;
+  final StorageService storageService;
   static const mm = '🏏🏏🏏FirestoreService 🏏';
 
-  FirestoreService(this.store);
+  FirestoreService(this.store, this.storageService);
 
+  Future addUser(User user) async {
+    return await addDocument(CollectionName.users, user.toJson());
+  }
+  Future getUser(String userId) async {
+    List list = await getDocuments(collection: CollectionName.users,
+        key: 'userId', keyValue: userId);
+    if (list.isNotEmpty) {
+      return list[0];
+    }
+    return null;
+  }
+  Future addFamily(Family family) async {
+    return await addDocument(CollectionName.families, family.toJson());
+  }
+  Future addFamilyMember(FamilyMember member) async {
+    return await addDocument(CollectionName.familyMembers, member.toJson());
+  }
+  Future addFamilyLocation(FamilyLocation familyLocation) async {
+    return await addDocument(CollectionName.familyLocations, familyLocation.toJson());
+  }
+  Future addFamilyMemberLocation(MemberLocation memberLocation) async {
+    return await addDocument(CollectionName.memberLocations, memberLocation.toJson());
+  }
+  Future addPost(Post post) async {
+    return await addDocument(CollectionName.posts, post.toJson());
+  }
+  Future addMemberImage({required MemberImage image, required File file}) async {
+    var url = await storageService.uploadFile(file: file, familyId: image.familyId,);
+    image.url = url;
+    var thumbFile = await createThumbnail(file);
+    var thumbUrl = await storageService.uploadFile(file: thumbFile, familyId: image.familyId,);
+    image.thumbUrl = thumbUrl;
+
+    return await addDocument(CollectionName.memberImages, image.toJson());
+  }
+  Future<File> createThumbnail(File imageFile) async {
+    final image = img.decodeImage(imageFile.readAsBytesSync());
+    if (image == null) {
+      throw Exception('Failed to decode image');
+    }
+    var extension = StorageService.getFileExtension(imageFile);
+    // Resize the image to 200x200
+    final thumbnail = img.copyResize(image, width: 200, height: 200);
+    final directory = await getTemporaryDirectory();
+    final fileName = 'thumbnail_${DateTime.now().millisecondsSinceEpoch}.$extension';
+    final thumbnailFile = File('${directory.path}/$fileName');
+    // Save the thumbnail as a JPEG
+    await thumbnailFile.writeAsBytes(img.encodeJpg(thumbnail));
+
+    return thumbnailFile;
+  }
   Future<String> addDocument(String collection, dynamic data) async {
     var docRef = await store.collection(collection).add(data);
-    pp('$mm document added to Firestore:  🍎 ${docRef.path}');
+    pp('$mm ... document added to Firestore:  🍎 ${docRef.path} 🍎 collection: $collection');
     return docRef.path;
   }
 
@@ -51,6 +114,8 @@ class CollectionName {
   static const memberLocations = 'memberLocations';
   static const familyMembers = 'familyMembers';
   static const familyLocations = 'familyLocations';
+  static const memberImages = 'memberImages';
+
 }
 
 
