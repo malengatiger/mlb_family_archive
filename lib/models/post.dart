@@ -10,6 +10,7 @@ class Post {
   PostType? postType;
   String? title, description, postId;
 
+
   Post(
       this.memberName,
       this.familyId,

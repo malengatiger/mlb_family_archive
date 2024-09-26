@@ -15,7 +15,7 @@ FamilyLocation _$FamilyLocationFromJson(Map<String, dynamic> json) =>
       json['userId'] as String?,
       (json['latitude'] as num?)?.toDouble(),
       (json['longitude'] as num?)?.toDouble(),
-      json['hash'] as String?,
+      json['geoHash'] as String?,
     );
 
 Map<String, dynamic> _$FamilyLocationToJson(FamilyLocation instance) =>
@@ -27,5 +27,5 @@ Map<String, dynamic> _$FamilyLocationToJson(FamilyLocation instance) =>
       'userId': instance.userId,
       'latitude': instance.latitude,
       'longitude': instance.longitude,
-      'hash': instance.hash,
+      'geoHash': instance.geoHash,
     };

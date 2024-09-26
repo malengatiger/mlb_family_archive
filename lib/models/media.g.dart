@@ -17,6 +17,7 @@ Media _$MediaFromJson(Map<String, dynamic> json) => Media(
       json['url'] as String?,
       json['thumbUrl'] as String?,
       $enumDecodeNullable(_$MediaTypeEnumMap, json['mediaType']),
+      json['filePath'] as String?,
     );
 
 Map<String, dynamic> _$MediaToJson(Media instance) => <String, dynamic>{
@@ -29,6 +30,7 @@ Map<String, dynamic> _$MediaToJson(Media instance) => <String, dynamic>{
       'userId': instance.userId,
       'url': instance.url,
       'thumbUrl': instance.thumbUrl,
+      'filePath': instance.filePath,
       'mediaType': _$MediaTypeEnumMap[instance.mediaType],
     };
 
@@ -37,5 +39,4 @@ const _$MediaTypeEnumMap = {
   MediaType.image: 'image',
   MediaType.video: 'video',
   MediaType.audio: 'audio',
-  MediaType.text: 'text',
 };

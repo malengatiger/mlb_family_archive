@@ -13,6 +13,8 @@ Family _$FamilyFromJson(Map<String, dynamic> json) => Family(
       json['dateUpdated'] as String?,
       json['userId'] as String?,
       json['parentFamilyId'] as String?,
+      json['parentFamilyName'] as String?,
+      json['isRootFamily'] as bool,
     );
 
 Map<String, dynamic> _$FamilyToJson(Family instance) => <String, dynamic>{
@@ -22,4 +24,6 @@ Map<String, dynamic> _$FamilyToJson(Family instance) => <String, dynamic>{
       'dateUpdated': instance.dateUpdated,
       'userId': instance.userId,
       'parentFamilyId': instance.parentFamilyId,
+      'parentFamilyName': instance.parentFamilyName,
+      'isRootFamily': instance.isRootFamily,
     };

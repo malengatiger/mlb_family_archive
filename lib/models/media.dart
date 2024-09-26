@@ -4,7 +4,7 @@ part 'media.g.dart';
 class Media {
   String? mediaId, dateRegistered, dateUpdated;
   String? title, description, postId;
-  String? userId, url, thumbUrl;
+  String? userId, url, thumbUrl, filePath;
   MediaType? mediaType;
 
 
@@ -18,7 +18,7 @@ class Media {
       this.userId,
       this.url,
       this.thumbUrl,
-      this.mediaType);
+      this.mediaType, this.filePath);
 
   factory Media.fromJson(Map<String, dynamic> json) =>
       _$MediaFromJson(json);
@@ -32,5 +32,4 @@ enum MediaType {
   image,
   video,
   audio,
-  text,
 }

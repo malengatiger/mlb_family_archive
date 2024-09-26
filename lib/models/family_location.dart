@@ -7,11 +7,11 @@ class FamilyLocation {
   String? familyName, familyId, dateRegistered, dateUpdated;
   String? userId;
   double? latitude, longitude;
-  String? hash;
+  String? geoHash;
 
 
   FamilyLocation(this.familyName, this.familyId, this.dateRegistered,
-      this.dateUpdated, this.userId, this.latitude, this.longitude, this.hash);
+      this.dateUpdated, this.userId, this.latitude, this.longitude, this.geoHash);
 
   factory FamilyLocation.fromJson(Map<String, dynamic> json) => _$FamilyLocationFromJson(json);
 

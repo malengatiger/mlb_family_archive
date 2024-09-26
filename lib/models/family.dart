@@ -5,11 +5,12 @@ part 'family.g.dart';
 @JsonSerializable()
 class Family {
   String? familyName, familyId, dateRegistered, dateUpdated;
-  String? userId, parentFamilyId;
+  String? userId, parentFamilyId, parentFamilyName;
 
+  bool isRootFamily = false;
 
   Family(this.familyName, this.familyId, this.dateRegistered, this.dateUpdated,
-      this.userId, this.parentFamilyId);
+      this.userId, this.parentFamilyId, this.parentFamilyName, this.isRootFamily);
 
   factory Family.fromJson(Map<String, dynamic> json) => _$FamilyFromJson(json);
 

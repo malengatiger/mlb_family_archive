@@ -7,11 +7,11 @@ class MemberLocation {
   String? memberName, memberId, dateRegistered;
   String? userId;
   double? latitude, longitude;
-  String? hash;
+  String? geoHash;
 
 
   MemberLocation(this.memberName, this.memberId, this.dateRegistered,
-      this.userId, this.latitude, this.longitude, this.hash);
+      this.userId, this.latitude, this.longitude, this.geoHash);
 
   factory MemberLocation.fromJson(Map<String, dynamic> json) => _$MemberLocationFromJson(json);
 

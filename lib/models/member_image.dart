@@ -4,11 +4,11 @@ part 'member_image.g.dart';
 class MemberImage {
   String? url, memberName, dateRegistered;
   String? thumbUrl;
-  String memberId, familyId;
+  String? memberId, familyId, familyName, memberImageId, filePath;
 
 
   MemberImage(this.url, this.memberName, this.dateRegistered, this.thumbUrl,
-      this.memberId, this.familyId);
+      this.memberId, this.familyId, this.memberImageId, this.familyName, this.filePath);
 
   factory MemberImage.fromJson(Map<String, dynamic> json) =>
       _$MemberImageFromJson(json);

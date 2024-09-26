@@ -8,8 +8,6 @@ class FamilyMember {
   MemberType? memberType;
   Gender? gender;
   String firstName, middleNames, lastName;
-
-
   FamilyMember(
       this.familyId,
       this.familyName,
